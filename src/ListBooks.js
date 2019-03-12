@@ -2,11 +2,11 @@ import React from 'react';
 import BookshelfBook from './BookshelfBook';
 import propTypes from 'prop-types';
 
-const BookshelfBooks = props => {
-	const { booksOnShelf, onBookShelfChange } = props;
+const ListBooks = props => {
+	const { books, onBookShelfChange } = props;
 	return (
 		<ol className="books-grid">
-			{booksOnShelf.map(book => (
+			{books.map(book => (
 				<li key={book.id}>
 					<BookshelfBook book={book} onBookShelfChange={onBookShelfChange} />
 				</li>
@@ -15,9 +15,9 @@ const BookshelfBooks = props => {
 	);
 };
 
-BookshelfBooks.propTypes = {
-	booksOnShelf: propTypes.array.isRequired,
+ListBooks.propTypes = {
+	books: propTypes.array.isRequired,
 	onBookShelfChange: propTypes.func.isRequired,
 };
 
-export default BookshelfBooks;
+export default ListBooks;

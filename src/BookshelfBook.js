@@ -5,8 +5,7 @@ const BookshelfBook = props => {
 	const { book, onBookShelfChange } = props;
 	const updateBookShelf = e => {
 		if (e.target.value !== book.shelf) {
-			book.shelf = e.target.value;
-			onBookShelfChange(book);
+			onBookShelfChange(book, e.target.value);
 		}
 	};
 	return (

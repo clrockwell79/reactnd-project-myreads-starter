@@ -1,5 +1,5 @@
 import React from 'react';
-import BookshelfBooks from './BookshelfBooks';
+import ListBooks from './ListBooks';
 import propTypes from 'prop-types';
 
 const Bookshelf = props => {
@@ -8,7 +8,7 @@ const Bookshelf = props => {
 		<div className="bookshelf">
 			<h2 className="bookshelf-title">{shelfTitle}</h2>
 			<div className="bookshelf-books">
-				<BookshelfBooks booksOnShelf={booksOnShelf} onBookShelfChange={onBookShelfChange} />
+				<ListBooks books={booksOnShelf} onBookShelfChange={onBookShelfChange} />
 			</div>
 		</div>
 	);

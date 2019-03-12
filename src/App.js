@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Search from './Search';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
@@ -20,27 +20,23 @@ class BooksApp extends React.Component {
 	}
 
 	render() {
-		/**
-		 * My primary mental struggle is how far removed this method is from the component that actually uses it.
-		 * As I type this, I realize that this state might be fine at least one component down because we're updating the API.
-		 * I initially thought the API would need to know what books are currently on a shelf for the search, however...
-		 */
-
-		const onBookShelfChange = book => {
-			this.setState(currentState => {
-				const books = currentState.myBooks.filter(myBook => myBook.id !== book.id);
-				return {
-					myBooks: [...books, book],
-				};
+		const onBookShelfChange = (book, shelf) => {
+			BooksAPI.update(book, shelf).then(() => {
+				book.shelf = shelf;
+				this.setState(currentState => {
+					const books = currentState.myBooks.filter(myBook => myBook.id !== book.id);
+					return {
+						myBooks: [...books, book],
+					};
+				});
 			});
-			BooksAPI.update(book, book.shelf);
 		};
 		return (
 			<div className="app">
 				<Route
 					path="/"
 					exact
-					render={() => <MyBookshelf books={this.state.myBooks} onBookShelfChange={onBookShelfChange} />}
+					render={() => <MyBookshelf myBooks={this.state.myBooks} onBookShelfChange={onBookShelfChange} />}
 				/>
 				<Route path="/search" component={Search} />
 			</div>

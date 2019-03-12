@@ -4,9 +4,9 @@ import Bookshelf from './Bookshelf';
 import propTypes from 'prop-types';
 
 const MyBookshelf = props => {
-	const { books, onBookShelfChange } = props;
+	const { myBooks, onBookShelfChange } = props;
 	const getBooksOnShelf = shelfId => {
-		return books.filter(book => book.shelf === shelfId);
+		return myBooks.filter(book => book.shelf === shelfId);
 	};
 	return (
 		<div className="list-books">
@@ -42,7 +42,7 @@ const MyBookshelf = props => {
 };
 
 MyBookshelf.propTypes = {
-	books: propTypes.array.isRequired,
+	myBooks: propTypes.array.isRequired,
 	onBookShelfChange: propTypes.func.isRequired,
 };
 
