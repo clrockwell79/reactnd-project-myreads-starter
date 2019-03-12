@@ -20,6 +20,12 @@ class BooksApp extends React.Component {
 	}
 
 	render() {
+		/**
+		 * My primary mental struggle is how far removed this method is from the component that actually uses it.
+		 * As I type this, I realize that this state might be fine at least one component down because we're updating the API.
+		 * I initially thought the API would need to know what books are currently on a shelf for the search, however...
+		 */
+
 		const onBookShelfChange = book => {
 			this.setState(currentState => {
 				const books = currentState.myBooks.filter(myBook => myBook.id !== book.id);
@@ -27,7 +33,7 @@ class BooksApp extends React.Component {
 					myBooks: [...books, book],
 				};
 			});
-			console.log('Changed book', book);
+			BooksAPI.update(book, book.shelf);
 		};
 		return (
 			<div className="app">
